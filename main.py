@@ -1,7 +1,6 @@
 import pdb
 import string
 from xmlrpc.client import DateTime
-from numpy import number
 import requests
 import os
 from dotenv import load_dotenv
@@ -13,7 +12,7 @@ from dateutil import parser
 
 @dataclass
 class Event:
-    start: number
+    start: float
     location: string
     homeTeam: string
     awayTeam: string
