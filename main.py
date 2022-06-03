@@ -6,8 +6,11 @@ import os
 from dotenv import load_dotenv
 from ics import Calendar
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import datetime, tzinfo
 from dateutil import parser
+import pytz
+
+os.environ['TZ'] = 'America/Vancouver'
 
 
 @dataclass
