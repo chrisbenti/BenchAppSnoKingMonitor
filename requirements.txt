@@ -1,0 +1,10 @@
+autopep8
+mypy
+pylint
+pytest
+python-dotenv
+requests
+types-requests
+ics
+pytz
+python-dateutil
