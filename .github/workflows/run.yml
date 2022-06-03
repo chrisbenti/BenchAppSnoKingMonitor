@@ -27,5 +27,5 @@ jobs:
 
       - name: Run
         env:
-          CALENDAR_URL: ${{ CALENDAR_URL }}
+          CALENDAR_URL: ${{ secrets.CALENDAR_URL }}
         run: make run
