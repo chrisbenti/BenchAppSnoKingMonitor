@@ -18,6 +18,9 @@ class Event:
     homeTeam: string
     awayTeam: string
 
+    def __hash__(self) -> int:
+        return hash(f"{self.start}{self.location}{self.homeTeam}{self.awayTeam}")
+
     @classmethod
     def from_ics(cls, ics):
         teams = ics.name.split(' vs. ')
@@ -50,7 +53,16 @@ def get_sno_king_events():
 
 
 print("BENCHAPP EVENTS")
-print(get_bench_app_events())
+bench_app_events = get_bench_app_events()
+print(bench_app_events)
 print("")
 print("SNOKING EVENTS")
-print(get_sno_king_events())
+sno_king_events = get_sno_king_events()
+print(sno_king_events)
+print("")
+
+if set(bench_app_events) == set(sno_king_events):
+    print("BenchApp and SnoKing site are in sync")
+else:
+    print("BenchApp and SnoKing site are not in sync")
+    exit(1)
