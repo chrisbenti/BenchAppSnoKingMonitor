@@ -1,0 +1,39 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v3
+        with:
+          python-version: "3.9"
+
+      - name: Print Python Version
+        run: python3 --version
+
+      - name: Install Python dependencies
+        uses: py-actions/py-dependency-install@v3
+
+      - name: Typecheck
+        run: make typecheck
+
+      - name: Lint
+        run: make lint
+
+      - name: Test
+        run: make test
+
+      - uses: rickstaa/action-create-tag@v1
+        with:
+          tag: "main_passing_tests"
+          message: "Main Passing Tests"
+          force_push_tag: true

@@ -1,0 +1,31 @@
+name: Run
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+  schedule:
+    # Hours specified in UTC, runs 8am-midnight
+    - cron: "0,30 15,16,17,18,19,20,21,22,23,0,1,2,3,4,5,6,7 * * *"
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v3
+        with:
+          python-version: "3.9"
+
+      - name: Print Python Version
+        run: python3 --version
+
+      - name: Install Python dependencies
+        uses: py-actions/py-dependency-install@v3
+
+      - name: Run
+        env:
+          CALENDAR_URL: ${{ CALENDAR_URL }}
+        run: make run
