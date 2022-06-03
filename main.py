@@ -6,7 +6,7 @@ import os
 from dotenv import load_dotenv
 from ics import Calendar
 from dataclasses import dataclass
-from datetime import datetime, tzinfo
+from datetime import datetime, date
 from dateutil import parser
 import pytz
 
@@ -48,10 +48,29 @@ def get_bench_app_events():
 
 
 def get_sno_king_events():
-    team_schedule_url = 'https://snokinghockeyleague.com/api/team/subSchedule/1079/1075?v=1030940'
-    games = requests.get(team_schedule_url).json()["games"]
-    sno_king_events = [Event.from_sno_king_site(game) for game in games]
-    return future_only(sno_king_events)
+    all_events = []
+    for season_id in get_season_ids():
+        try:
+            team_schedule_url = f"https://snokinghockeyleague.com/api/team/subSchedule/{season_id}/1075?v=1030940"
+            games = requests.get(team_schedule_url).json()["games"]
+            events = [Event.from_sno_king_site(game) for game in games]
+            all_events += future_only(events)
+        except Exception:
+            # If team is not in season (I.E. Frost Giants don't play BEHL), we get a 500
+            # I really should actually figure out if the team is in the season before I query but...
+            # This entire script is a lazy hack so who cares if I'm a lazy hack in the script
+            pass
+    return all_events
+
+
+def get_season_ids():
+    seasons_url = "https://snokinghockeyleague.com/api/season/all/0?v=1030940"
+    today_year = str(date.today().year)
+
+    seasons = requests.get(seasons_url).json()["seasons"]
+    current_seasons = [
+        season for season in seasons if today_year in season["name"]]
+    return [season["id"] for season in current_seasons]
 
 
 print("BENCHAPP EVENTS")
