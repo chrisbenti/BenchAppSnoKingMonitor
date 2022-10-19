@@ -32,6 +32,9 @@ class Event:
     def from_sno_king_site(cls, event):
         return Event(parser.parse(event['dateTime']).timestamp(), event['rinkName'], event['teamHomeName'], event['teamAwayName'])
 
+    def __repr__(self) -> str:
+        return f"{datetime.fromtimestamp(self.start)}: {self.homeTeam} vs {self.awayTeam} @ {self.location}"
+
 
 load_dotenv()
 
@@ -82,8 +85,16 @@ sno_king_events = get_sno_king_events()
 print(sno_king_events)
 print("")
 
-if set(bench_app_events) == set(sno_king_events):
+set_ba = set(bench_app_events)
+set_sk = set(sno_king_events)
+if set_ba == set_sk:
     print("BenchApp and SnoKing site are in sync")
 else:
     print("BenchApp and SnoKing site are not in sync")
+    print()
+    print("BenchApp, Not Site: ")
+    print(set_ba - set_sk)
+    print()
+    print("Site, Not BenchApp: ")
+    print(set_sk - set_ba)
     exit(1)
