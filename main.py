@@ -46,7 +46,8 @@ def future_only(events_list):
 def get_bench_app_events():
     cal_url = os.getenv("CALENDAR_URL")
     c = Calendar(requests.get(cal_url).text)
-    bench_app_events = [Event.from_ics(event) for event in c.events]
+    bench_app_events = [Event.from_ics(
+        event) for event in c.events if not event.name.startswith('Practice')]
     return future_only(bench_app_events)
 
 
