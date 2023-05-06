@@ -19,7 +19,7 @@ load_dotenv()
 CONFIG = [
     {
         'name': "Frost Giants",
-        'ba': os.getenv('BA_FROST_GIANTS'),
+        'ba': "https://ics.benchapp.com/eyJwbGF5ZXJJZCI6NjMwODYsInRlYW1JZCI6WzgwNzUzXX0",
         'snoking': {
             'seasons': 'https://snokinghockeyleague.com/api/season/all/0?v=1030940',
             'season': 'https://snokinghockeyleague.com/api/team/subSchedule/{season_id}/1075?v=1030940"'
@@ -27,7 +27,7 @@ CONFIG = [
     },
         {
         'name': "Frost Giants",
-        'ba': os.getenv('BA_FROST_MITES'),
+        'ba': "https://ics.benchapp.com/eyJwbGF5ZXJJZCI6NjMwODYsInRlYW1JZCI6Wzg1Njk4Nl19",
         'snoking': {
             'seasons': 'http://snokingpondhockey.com/api/season/all/0?v=1030940',
             'season': 'http://snokingpondhockey.com/api/team/subSchedule/{season_id}/2865?v=1030940"'
