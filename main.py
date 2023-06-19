@@ -25,14 +25,14 @@ CONFIG = [
             'season': 'https://snokinghockeyleague.com/api/team/subSchedule/{season_id}/1075?v=1030940"'
         },
     },
-        {
-        'name': "Frost Giants",
-        'ba': "https://ics.benchapp.com/eyJwbGF5ZXJJZCI6NjMwODYsInRlYW1JZCI6Wzg1Njk4Nl19",
-        'snoking': {
-            'seasons': 'http://snokingpondhockey.com/api/season/all/0?v=1030940',
-            'season': 'http://snokingpondhockey.com/api/team/subSchedule/{season_id}/2865?v=1030940"'
-        },
-    }
+    #     {
+    #     'name': "Frost Mites",
+    #     'ba': "https://ics.benchapp.com/eyJwbGF5ZXJJZCI6NjMwODYsInRlYW1JZCI6Wzg1Njk4Nl19",
+    #     'snoking': {
+    #         'seasons': 'http://snokingpondhockey.com/api/season/all/0?v=1030940',
+    #         'season': 'http://snokingpondhockey.com/api/team/subSchedule/{season_id}/2865?v=1030940"'
+    #     },
+    # }
 ]
 
 exit_code = 0
