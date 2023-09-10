@@ -15,7 +15,7 @@ class Event:
     @classmethod
     def from_ics(cls, ics):
         teams = ics.name.split(' vs. ')
-        return Event(ics.begin.datetime.timestamp(), ics.location.split(' - ')[0], teams[1], teams[0])
+        return Event(ics.begin.datetime.timestamp(), ics.location.split(' - ')[0].replace('(', ''), teams[1], teams[0])
 
     @classmethod
     def from_sno_king_site(cls, event):
