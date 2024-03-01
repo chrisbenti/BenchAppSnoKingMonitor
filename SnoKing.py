@@ -25,9 +25,10 @@ class SnoKing(EventGrabber):
     @classmethod
     def get_season_ids(cls, seasons_url):
         today_year = str(date.today().year)
+        last_year = str(date.today().year - 1)
 
         seasons = requests.get(seasons_url).json()["seasons"]
         current_seasons = [
-            season for season in seasons if today_year in season["name"]]
+            season for season in seasons if today_year in season["name"] or last_year in season["name"]]
         ids = [season["id"] for season in current_seasons]
         return ids
